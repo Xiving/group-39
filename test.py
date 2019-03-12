@@ -19,7 +19,7 @@ x_test = features[~mask]
 y_test = target[~mask]
 
 # fit a model
-random_forrest = RandomForestClassifier(n_estimators=10)
+random_forrest = RandomForestClassifier(n_estimators=1000)
 random_forrest.fit(x_train, y_train)
 
 # test model
@@ -27,7 +27,7 @@ y_predicted = random_forrest.predict(x_test)
 print("Accuracy:" + str(accuracy_score(y_test, y_predicted)) + "\n")
 
 importance = random_forrest.feature_importances_
-feature_names = list(data.columns.values)
+feature_names = list(data.columns.values[1:56])
 
 feature_importance = list(zip(feature_names, importance))
 feature_importance_sorted = sorted(feature_importance, key=lambda tup: tup[1], reverse=True)
